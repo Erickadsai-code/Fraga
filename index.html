@@ -4,348 +4,211 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Academia Fraga — Reportes Meta Ads</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --primary: #6366f1;
-      --primary-dark: #4f46e5;
       --secondary: #ec4899;
       --success: #10b981;
       --bg-dark: #0f172a;
-      --bg-light: #f9fafb;
-      --text-dark: #1f2937;
       --text-muted: #6b7280;
       --border: #e5e7eb;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, var(--bg-dark) 0%, #1e293b 100%);
-      color: var(--text-dark);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* ===== HEADER ===== */
     header {
       background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 20px clamp(16px, 3vw, 40px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .header-content {
       max-width: 1280px;
-      margin: 0 auto;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
     }
 
     .logo {
       font-family: 'Syne', sans-serif;
-      font-size: 20px;
       font-weight: 700;
       display: flex;
+      gap: 10px;
       align-items: center;
-      gap: 12px;
-      color: white;
     }
 
     .logo-dot {
       width: 8px;
       height: 8px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.1); }
-    }
-
-    .badge {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
     }
 
-    /* ===== MAIN ===== */
     main {
       flex: 1;
       max-width: 1280px;
-      margin: 0 auto;
+      margin: auto;
+      padding: 60px 20px;
       width: 100%;
-      padding: clamp(40px, 6vw, 80px) clamp(16px, 3vw, 40px);
     }
 
-    .hero {
-      margin-bottom: 60px;
-    }
-
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 12px;
+    h1 {
+      font-family: 'Syne';
       color: white;
+      margin-bottom: 10px;
     }
 
-    .hero p {
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 600px;
-      line-height: 1.6;
-    }
+    p { color: rgba(255,255,255,0.7); }
 
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: rgba(255, 255, 255, 0.95);
-    }
-
-    /* ===== REPORTS GRID ===== */
     .reports-grid {
+      margin-top: 40px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-
-    @media (max-width: 768px) {
-      .reports-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .reports-grid {
-        grid-template-columns: 1fr;
-      }
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 20px;
     }
 
     .report-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(249, 250, 251, 0.95));
-      border: 1px solid rgba(15, 23, 42, 0.1);
+      background: white;
+      padding: 24px;
       border-radius: 16px;
-      padding: 32px 24px;
-      cursor: pointer;
-      transition: all 0.3s ease;
       text-decoration: none;
       color: inherit;
-      position: relative;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
-      min-height: 250px;
-    }
-
-    .report-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: .3s;
     }
 
     .report-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
     }
 
     .report-month {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.5rem;
+      font-size: 28px;
       font-weight: 700;
       color: var(--primary);
-      margin-bottom: 8px;
     }
 
     .report-year {
       font-size: 12px;
+      margin-bottom: 10px;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .report-description {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      flex: 1;
-      margin-bottom: 20px;
     }
 
     .report-footer {
+      margin-top: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 16px;
+      padding-top: 10px;
       border-top: 1px solid var(--border);
     }
 
     .report-status {
       font-size: 12px;
       color: var(--success);
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .report-status::before {
-      content: "●";
-      font-size: 8px;
-    }
-
-    .report-arrow {
-      color: var(--primary);
-      font-size: 20px;
-      transition: transform 0.2s ease;
-    }
-
-    .report-card:hover .report-arrow {
-      transform: translateX(4px);
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .empty-state p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    /* ===== FOOTER ===== */
     footer {
-      background: rgba(15, 23, 42, 0.8);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px clamp(16px, 3vw, 40px);
-      margin-top: 60px;
       text-align: center;
-    }
-
-    footer p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 13px;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-
-      .report-month {
-        font-size: 2rem;
-      }
-
-      .reports-grid {
-        grid-template-columns: 1fr;
-      }
+      padding: 20px;
+      color: rgba(255,255,255,0.6);
     }
   </style>
 </head>
+
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="header-content">
-      <div class="logo">
-        <div class="logo-dot"></div>
-        <span>Academia Fraga</span>
+
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <div class="logo-dot"></div>
+      Academia Fraga
+    </div>
+    <span>Meta Ads</span>
+  </div>
+</header>
+
+<main>
+  <h1>Reportes Meta Ads</h1>
+  <p>Selecciona un mes para ver el reporte completo</p>
+
+  <div class="reports-grid" id="reportsContainer"></div>
+</main>
+
+<footer>
+  Academia Fraga • Reportes Meta Ads
+</footer>
+
+<script>
+  // 🔥 NUEVA ESTRUCTURA ESCALABLE
+  const availableMonths = [
+    {
+      month: 'Marzo',
+      year: '2026',
+      file: 'marzo-2026.html',
+      available: true
+    },
+    {
+      month: 'Abril',
+      year: '2026',
+      file: 'semana-01-10-abril-2026.html',
+      available: true
+    },
+    {
+      month: 'Mayo',
+      year: '2026',
+      file: '',
+      available: false
+    }
+  ];
+
+  const container = document.getElementById('reportsContainer');
+
+  availableMonths.forEach(item => {
+
+    const link = item.available
+      ? `./reportes/2026/${item.file}`
+      : '#';
+
+    const card = document.createElement('a');
+    card.href = link;
+    card.className = 'report-card';
+
+    if (!item.available) {
+      card.style.opacity = '0.5';
+      card.onclick = (e) => e.preventDefault();
+    }
+
+    card.innerHTML = `
+      <div class="report-month">${item.month}</div>
+      <div class="report-year">${item.year}</div>
+
+      <p>Análisis completo de campañas Meta Ads con optimización y estrategia.</p>
+
+      <div class="report-footer">
+        <span class="report-status">
+          ${item.available ? 'Disponible' : 'Próximamente'}
+        </span>
+        <span>→</span>
       </div>
-      <div class="badge">Meta Ads</div>
-    </div>
-  </header>
+    `;
 
-  <!-- MAIN -->
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <h1>Reportes Meta Ads</h1>
-      <p>Análisis mensuales del rendimiento de tu estrategia de conversaciones en WhatsApp. Selecciona un mes para ver el reporte completo.</p>
-    </section>
+    container.appendChild(card);
+  });
+</script>
 
-    <!-- SECTION TITLE -->
-    <h2 class="section-title">2026</h2>
-
-    <!-- REPORTS GRID -->
-    <div class="reports-grid" id="reportsContainer">
-      <!-- Los meses se cargan aquí dinámicamente -->
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>Academia Fraga • Reportes Meta Ads • Últimas actualizaciones disponibles</p>
-  </footer>
-
-  <script>
-    // Lista de meses disponibles (actualiza cuando agregas uno nuevo)
-    const availableMonths = [
-      { month: 'Marzo', number: '03', year: '2026', available: true },
-      { month: 'Abril', number: '04', year: '2026', available: false },
-      { month: 'Mayo', number: '05', year: '2026', available: false },
-      // Agrega aquí cuando tengas nuevos meses
-    ];
-
-    const container = document.getElementById('reportsContainer');
-
-    availableMonths.forEach(item => {
-      const link = item.available ? `./reportes/2026/marzo-2026.html` : '#';
-      const card = document.createElement('a');
-      card.href = link;
-      card.className = 'report-card';
-      if (!item.available) {
-        card.style.opacity = '0.6';
-        card.style.cursor = 'not-allowed';
-        card.onclick = (e) => e.preventDefault();
-      }
-
-      card.innerHTML = `
-        <div class="report-month">${item.month}</div>
-        <div class="report-year">${item.year}</div>
-        <p class="report-description">
-          Análisis completo del desempeño de tus campañas Meta Ads con explicación de estrategias y próximas acciones.
-        </p>
-        <div class="report-footer">
-          <span class="report-status">${item.available ? 'Disponible' : 'Próximamente'}</span>
-          <span class="report-arrow">→</span>
-        </div>
-      `;
-
-      container.appendChild(card);
-    });
-  </script>
 </body>
 </html>
