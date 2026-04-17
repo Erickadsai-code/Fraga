@@ -7,6 +7,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "creativos-ganadores/**/*",
+      "use": "@vercel/static"
+    },
+    {
       "src": "reportes/**/*.html",
       "use": "@vercel/static"
     }
