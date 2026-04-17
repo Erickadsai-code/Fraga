@@ -70,7 +70,8 @@ h1{
   gap:8px;
 }
 
-.dropdown a{
+.dropdown a,
+.dropdown span{
   background:#f1f5f9;
   padding:10px;
   border-radius:8px;
@@ -78,10 +79,17 @@ h1{
   color:#111;
   font-size:14px;
   transition:.2s;
+  display:block;
 }
 
 .dropdown a:hover{
   background:#e2e8f0;
+}
+
+.dropdown .disabled-link{
+  background:#e5e7eb;
+  color:#94a3b8;
+  cursor:not-allowed;
 }
 
 .disabled{
@@ -115,15 +123,18 @@ const months = [
     weeks:[
       {
         name:'Semana 1–10',
-        link:'./reportes/2026/semana-01-10-abril-2026.html'
+        link:'./reportes/2026/semana-01-10-abril-2026.html',
+        available:true
       },
       {
         name:'Semana 13–17',
-        link:'./reportes/2026/semana-13-17-abril-2026.html'
+        link:'./reportes/2026/semana-13-17-abril-2026.html',
+        available:true
       },
       {
         name:'Semana 21–30',
-        link:'#'
+        link:'',
+        available:false
       }
     ]
   },
@@ -137,7 +148,6 @@ const months = [
 const grid = document.getElementById('grid');
 
 months.forEach(m => {
-
   const card = document.createElement('div');
   card.className = 'card';
 
@@ -154,13 +164,19 @@ months.forEach(m => {
 
   const dropdown = card.querySelector('.dropdown');
 
-  // 👉 SI TIENE SEMANAS (ABRIL)
   if(m.weeks){
     m.weeks.forEach(w=>{
-      const a = document.createElement('a');
-      a.textContent = w.name;
-      a.href = w.link;
-      dropdown.appendChild(a);
+      if(w.available){
+        const a = document.createElement('a');
+        a.textContent = w.name;
+        a.href = w.link;
+        dropdown.appendChild(a);
+      } else {
+        const span = document.createElement('span');
+        span.textContent = `${w.name} — Próximamente`;
+        span.className = 'disabled-link';
+        dropdown.appendChild(span);
+      }
     });
 
     card.onclick = () => {
@@ -169,7 +185,6 @@ months.forEach(m => {
     };
 
   } else if(m.available){
-    // 👉 SI ES MES NORMAL
     card.onclick = () => {
       window.location.href = m.link;
     };
